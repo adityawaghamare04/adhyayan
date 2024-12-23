@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Stack Development Roadmap</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Poppins;
+        }
+
+        .main {
+            width: 100%;
+            height: auto;
+            display: grid;
+            place-items: center;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .main .head {
+            font-size: 29px;
+            color: rgba(91, 14, 216, 0.767);
+            position: relative;
+            margin-bottom: 100px;
+            font-weight: 500;
+        }
+
+        .container {
+            width: 70%;
+            height: auto;
+            margin: auto 0;
+            position: relative;
+        }
+
+        .link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h3 class="head">Basics of Programming</h3>
+
+        <div class="container">
+            <p>STACK<br>
+                A stack is a fundamental data structure used in computer science. It follows the LIFO (Last In, First Out)
+                principle, meaning that the last element added to the stack is the first one to be removed. Think of a stack
+                of plates: you add new plates to the top, and when you remove a plate, you take the one from the top of the
+                stack first..<br><br>
+
+                Key Characteristics of a Stack:<br><br>
+            <ul>
+                <li> Last In, First Out (LIFO): The last element pushed onto the stack is the first one to be popped out.</li>
+                <li>Push: The operation to add an element to the stack.</li>
+                <li>Pop: The operation to remove the top element from the stack.</li>
+                <li> Operators: Symbols used to perform operations, such as addition (+), comparison (==), or logical
+                    evaluation (&&).</li>
+                <li>Peek/Top: The operation to look at the top element of the stack without removing it..</li>
+                <li> IsEmpty: Checks if the stack is empty</li>
+                <li>Size: Returns the number of elements in the stack.</li>
+            </ul>
+            <br><br><br><br>
+            </p>
+            <ul>
+                <li>
+                    <h3 class="heading">Notes</h3>
+                    <a href="#" class="link">Dive Deep ></a><br>
+                </li>
+                <li>
+                    <h3 class="heading">Video 1</h3>
+                    <a href="#" class="link">Dive Deep ></a><br>
+                </li>
+                <li>
+                    <h3 class="heading">Video </h3>
+                    <ul id="video-list"></ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+        const videos = {
+            "0-3": [
+                { title: "Basic Video 1", url: "https://youtu.be/OUNrsKqAFW4?si=8C93ON0-3qjY0H0P" },
+                { title: "Basic Video 2", url: "https://youtu.be/hORtKM9FV2s?si=v9c5FMLq1z_batAC" },
+                { title: "Basic Video 3", url: "https://youtu.be/T49LmFmIDDM?si=lIN0VUKmt6FzTE1g" },
+            ],
+            "4-6": [
+                { title: "Intermediate Video 1", url: "https://example.com/intermediate1" },
+                { title: "Intermediate Video 2", url: "https://example.com/intermediate2" },
+                { title: "Intermediate Video 3", url: "https://example.com/intermediate3" },
+            ],
+            "7-10": [
+                { title: "Advanced Video 1", url: "https://example.com/advanced1" },
+                { title: "Advanced Video 2", url: "https://example.com/advanced2" },
+                { title: "Advanced Video 3", url: "https://example.com/advanced3" },
+            ],
+        };
+
+        // Retrieve the score and range from local storage
+        const storedScore = localStorage.getItem("quizScore");
+        const storedRange = localStorage.getItem("quizRange");
+
+        // Function to get two random videos
+        function getRandomVideos(videoList, count = 2) {
+            const shuffled = videoList.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        const videoListElement = document.getElementById("video-list");
+
+        if (storedRange && videos[storedRange]) {
+            const randomVideos = getRandomVideos(videos[storedRange], 2);
+
+            randomVideos.forEach(video => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${video.url}" target="_blank" class='link'>${video.title} : ${video.url}</a>`;
+                videoListElement.appendChild(li);
+            });
+        } else {
+            videoListElement.innerHTML = `<li>Take the prerequisite test to unlock videos</li>`;
+        }
+    </script>
+
+</body>
+
+</html>

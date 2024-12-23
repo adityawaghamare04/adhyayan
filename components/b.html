@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Videos</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Poppins;  
+        }
+        .main {
+            width: 100%;
+            height: auto;
+            display: grid;
+            place-items: center;
+            background-color:#fff;
+            padding: 50px 0;
+        }
+        .main .head {
+            font-size: 29px;
+            color: rgba(91, 14, 216, 0.767);
+            position: relative;
+            margin-bottom: 100px;
+            font-weight: 500;
+        }
+        .container {
+            width: 70%;
+            height: auto;
+            margin: auto 0;
+            position: relative;
+        }   
+        
+        .link {
+            text-decoration: none; 
+            color: inherit;         }
+        
+        .link:hover {
+            text-decoration: underline;
+            color: blue; 
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h3 class="head">Basics of Programming</h3>
+        <div class="container">
+            <p>Basics of Programming Languages<br>
+                Programming languages are the tools used to communicate instructions to computers. They provide a structured way to write commands that computers can interpret and execute. Each programming language has its unique syntax and features, but the fundamental concepts remain consistent across all languages.<br><br>
+                
+                Core Components of a Programming Language:<br><br>
+                <ul>
+                    <li> Syntax: The rules and structure for writing valid code.</li>
+                    <li>Data Types: Define the kind of data a language can handle, such as integers, strings, and floating-point numbers.</li>
+                    <li>Variables: Used to store data that can be manipulated during program execution.</li>
+                    <li> Operators: Symbols used to perform operations, such as addition (+), comparison (==), or logical evaluation (&&).</li>
+                    <li>Control Flow: Constructs like loops (for, while) and conditionals (if, else) that direct the execution path.</li>
+                    <li> Functions: Blocks of reusable code designed to perform specific tasks.</li>
+                    <li> Input/Output (I/O): Mechanisms to interact with users or other systems, such as reading input or displaying output</li>
+                </ul> 
+                <br><br><br><br>
+            </p>
+            <ul>
+                <li>
+                    <h3 class="heading">Article</h3>
+                    <a href="#" id="article" class="link">Dive Deep ></a><br>
+                </li>
+                <li>
+                    <h3 class="heading">Article</h3>
+                    <a href="#" id="article2" class="link">Dive Deep ></a><br>
+                </li>
+                <li>
+                    <h3 class="heading">Video </h3>
+                    <ul id="video-list"  ></ul> 
+                </li>
+            </ul>    
+        </div>
+    </div>
+
+    <script>
+        const videos = {
+            "0-3": [
+                { title: "Basic Video 1", url: "https://youtu.be/OUNrsKqAFW4?si=8C93ON0-3qjY0H0P" },
+                { title: "Basic Video 2", url: "https://youtu.be/hORtKM9FV2s?si=v9c5FMLq1z_batAC" },
+                { title: "Basic Video 3", url: "https://youtu.be/T49LmFmIDDM?si=lIN0VUKmt6FzTE1g" },
+            ],
+            "4-6": [
+                { title: "Intermediate Video 1", url: "https://example.com/intermediate1" },
+                { title: "Intermediate Video 2", url: "https://example.com/intermediate2" },
+                { title: "Intermediate Video 3", url: "https://example.com/intermediate3" },
+            ],
+            "7-10": [
+                { title: "Advanced Video 1", url: "https://example.com/advanced1" },
+                { title: "Advanced Video 2", url: "https://example.com/advanced2" },
+                { title: "Advanced Video 3", url: "https://example.com/advanced3" },
+            ],
+        };
+
+        // Retrieve the score and range from local storage
+        const storedScore = localStorage.getItem("quizScore");
+        const storedRange = localStorage.getItem("quizRange");
+
+        // Function to get two random videos
+        function getRandomVideos(videoList, count = 2) {
+            const shuffled = videoList.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        const videoListElement = document.getElementById("video-list");
+
+        if (storedRange && videos[storedRange]) {
+            const randomVideos = getRandomVideos(videos[storedRange], 2);
+
+            randomVideos.forEach(video => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${video.url}" target="_blank" class='link'>${video.title} : ${video.url}</a>`;
+                videoListElement.appendChild(li);
+            });
+        } else {
+            videoListElement.innerHTML = `<li>Take the prerequisite test to unlock videos</li>`;
+        }
+    </script>
+</body>
+
+</html>
